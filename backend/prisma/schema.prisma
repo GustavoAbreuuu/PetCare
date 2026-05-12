@@ -1,0 +1,164 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Gender {
+  M
+  F
+}
+
+enum AppointmentStatus {
+  scheduled
+  confirmed
+  canceled
+  completed
+}
+
+model Role {
+  id    Int        @id @default(autoincrement())
+  name  String     @unique @db.VarChar(50)
+  users UserRole[]
+
+  @@map("roles")
+}
+
+model User {
+  id        Int           @id @default(autoincrement())
+  name      String        @db.VarChar(100)
+  email     String        @unique @db.VarChar(150)
+  phone     String?       @db.VarChar(20)
+  cpf       String?       @unique @db.VarChar(14)
+  password  String        @db.VarChar(255)
+  createdAt DateTime      @default(now()) @map("created_at")
+  roles     UserRole[]
+  pets      Pet[]
+  vet       Veterinarian?
+
+  @@map("users")
+}
+
+model UserRole {
+  userId Int
+  roleId Int
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role   Role @relation(fields: [roleId], references: [id], onDelete: Cascade)
+
+  @@id([userId, roleId])
+  @@map("user_roles")
+}
+
+model Veterinarian {
+  id         Int            @id @default(autoincrement())
+  userId     Int            @unique @map("user_id")
+  crmv       String         @unique @db.VarChar(20)
+  specialty  String?        @db.VarChar(100)
+  user       User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  appointments Appointment[]
+  consultations Consultation[]
+
+  @@map("veterinarians")
+}
+
+model Pet {
+  id            Int              @id @default(autoincrement())
+  userId        Int              @map("user_id")
+  name          String           @db.VarChar(100)
+  species       String?          @db.VarChar(50)
+  breed         String?          @db.VarChar(50)
+  gender        Gender?
+  dateBirth     DateTime?        @db.Date @map("date_birth")
+  user          User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  appointments  Appointment[]
+  consultations Consultation[]
+  vaccines      Vaccine[]
+  medications   PetMedication[]
+  weights       WeightHistory[]
+
+  @@map("pets")
+}
+
+model Appointment {
+  id             Int              @id @default(autoincrement())
+  petId          Int              @map("pet_id")
+  veterinarianId Int              @map("veterinarian_id")
+  scheduledAt    DateTime         @map("scheduled_at")
+  reason         String?          @db.VarChar(255)
+  status         AppointmentStatus @default(scheduled)
+  pet            Pet              @relation(fields: [petId], references: [id])
+  veterinarian   Veterinarian     @relation(fields: [veterinarianId], references: [id])
+  consultations  Consultation[]
+
+  @@map("appointments")
+}
+
+model ConsultationStatus {
+  id            Int            @id @default(autoincrement())
+  name          String         @unique @db.VarChar(50)
+  consultations Consultation[]
+
+  @@map("consultation_status")
+}
+
+model Consultation {
+  id             Int               @id @default(autoincrement())
+  petId          Int               @map("pet_id")
+  veterinarianId Int               @map("veterinarian_id")
+  appointmentId  Int?              @map("appointment_id")
+  statusId       Int               @map("status_id")
+  date           DateTime
+  motive         String?           @db.VarChar(255)
+  observations   String?           @db.Text
+  pet            Pet               @relation(fields: [petId], references: [id])
+  veterinarian   Veterinarian      @relation(fields: [veterinarianId], references: [id])
+  appointment    Appointment?      @relation(fields: [appointmentId], references: [id])
+  status         ConsultationStatus @relation(fields: [statusId], references: [id])
+
+  @@map("consultations")
+}
+
+model Vaccine {
+  id              Int      @id @default(autoincrement())
+  petId           Int      @map("pet_id")
+  name            String   @db.VarChar(100)
+  applicationDate DateTime? @db.Date @map("application_date")
+  nextDose        DateTime? @db.Date @map("next_dose")
+  pet             Pet      @relation(fields: [petId], references: [id])
+
+  @@map("vaccines")
+}
+
+model Medication {
+  id    Int             @id @default(autoincrement())
+  name  String          @db.VarChar(100)
+  pets  PetMedication[]
+
+  @@map("medications")
+}
+
+model PetMedication {
+  id           Int        @id @default(autoincrement())
+  petId        Int        @map("pet_id")
+  medicationId Int        @map("medication_id")
+  dose         String?    @db.VarChar(50)
+  frequency    String?    @db.VarChar(50)
+  timePeriod   String?    @db.VarChar(50) @map("time_period")
+  pet          Pet        @relation(fields: [petId], references: [id])
+  medication   Medication @relation(fields: [medicationId], references: [id])
+
+  @@map("pet_medications")
+}
+
+model WeightHistory {
+  id           Int       @id @default(autoincrement())
+  petId        Int       @map("pet_id")
+  weight       Decimal?  @db.Decimal(5, 2)
+  registryDate DateTime? @db.Date @map("registry_date")
+  pet          Pet       @relation(fields: [petId], references: [id])
+
+  @@map("weight_history")
+}
