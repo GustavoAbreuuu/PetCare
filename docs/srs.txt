@@ -1,0 +1,84 @@
+1. Visão Geral: O sistema PETCARE+ é uma aplicação web e mobile desenvolvido para auxiliar tutores de pets no gerenciamento da saúde e dos cuidados de seus animais.
+
+2. Objetivo: O objetivo do sistema PETCARE+ é fornecer uma solução digital eficiente para o controle e acompanhamento dos cuidados de pets, permitindo que tutores: 
+- Registrem e mantenham atualizada informações de seus animais.
+- Gerenciem vacinas, consultas e medicações.
+- Recebam notificações automáticas para evitar esquecimentos.
+- Tenham acesso rápido ao histórico completo de saúde dos pets.
+
+Como objetivo secundário, o sistema visa:
+- Reduzir riscos à saúde dos animais causados por falhas no acompanhamento.
+- Minimizar custos com tratamentos emergenciais evitáveis.
+- Melhorar a organização e a experiência dos tutores no cuidado diário.
+
+No contexto de evolução do sistema, o PETCARE+ também pretende integrar funcionalidades que conectem usuário a pet shops e serviços veterinários, ampliando o valor entregue pela plataforma.
+
+8. Modelagem de Dados:                         
+Users            
+PK id
+name
+email
+phone
+cpf
+password
+created_at
+
+Pets
+PK id
+FK user_id
+name
+species
+breed
+gender
+date_birth
+created_at
+
+Consultation
+PK id
+FK pet_id
+date
+motive
+observations
+
+Vaccine
+PK id
+FK pet_id
+name
+application_dose
+next_dose
+
+Medications:
+PK id
+name
+
+Pet_medication:
+PK id
+FK pet_id
+FK medication_id
+dose
+frequency
+time_period
+
+weigth_history
+PK id
+FK pet_id
+weigth
+registry_date
+
+Relacionamentos: 
+Um usuário pode ter diferentes papéis: Admin, Veterinarian.
+Um tutor pode ter vários pets.
+Um pet pertence apenas a um tutor.
+Um pet pode ter vários agendamentos.
+Um veterináro atende vários agendamentos.
+Um agendamento pode gerar uma consulta.
+Mas nem todo agendamento vira uma consulta.
+Cada consulta possui um status: scheduled, completed, canceled.
+Um pet recebe várias vacinas ao longo da vida.
+Um pet pode usar vários medicamentos.
+Um medicamento pode ser usado por vários pets.
+Um pet possui vários registros de peso ao longo do tempo.
+
+Avançado:
+Evitar dois atendimentos no mesmo horário para o mesmo veterinário.
+resolver com constraint + lógica de aplicação.
