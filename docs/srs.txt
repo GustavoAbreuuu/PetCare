@@ -2,8 +2,6 @@
 
 2. Objetivo: O objetivo do sistema PETCARE+ é fornecer uma solução digital eficiente para o controle e acompanhamento dos cuidados de pets, facilitando a vida dos tutores em relação a saúde e cuidados de seus animas, o sistema é dividido pelas funcionalidades a seguir.
 
-- Tenham acesso ao controle de vacinas, controle de medicação, gestão de consulta e histórico de sáude.
-
 Histórico de saúde, que permite com que os tutores:
     - Registrem e mantenham atualizadas informações de seus animais como evolução de peso e resumo de saúde, a partir de um histórico que serve como uma linha do tempo completa da saúde.
     - Esse histórico registra consultas, vacinas aplicadas, prescrição de medicações com todas as informações relacionadas a cada caso.
@@ -36,7 +34,13 @@ Como objetivo secundário, o sistema visa:
 - Minimizar custos com tratamentos emergenciais evitáveis.
 - Melhorar a organização e a experiência dos tutores no cuidado diário.
 
-No contexto de evolução do sistema, o PETCARE+ também pretende integrar funcionalidades que conectem usuário a pet shops e serviços veterinários, ampliando o valor entregue pela plataforma.
+Planos PetCare+
+
+Plano Grátis: 
+
+Plano Pro:
+
+No contexto de evolução do sistema, o PETCARE+ também pretende integrar funcionalidades que conectem usuário a pet shops e serviços veterinários, ampliando o valor entregue pela plataforma.  
 
 8. Modelagem de Dados:                         
 Users            
