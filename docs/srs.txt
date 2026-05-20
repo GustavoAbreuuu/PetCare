@@ -1,10 +1,35 @@
 1. Visão Geral: O sistema PETCARE+ é uma aplicação web e mobile desenvolvido para auxiliar tutores de pets no gerenciamento da saúde e dos cuidados de seus animais.
 
-2. Objetivo: O objetivo do sistema PETCARE+ é fornecer uma solução digital eficiente para o controle e acompanhamento dos cuidados de pets, permitindo que tutores: 
-- Registrem e mantenham atualizada informações de seus animais.
-- Gerenciem vacinas, consultas e medicações.
-- Recebam notificações automáticas para evitar esquecimentos.
-- Tenham acesso rápido ao histórico completo de saúde dos pets.
+2. Objetivo: O objetivo do sistema PETCARE+ é fornecer uma solução digital eficiente para o controle e acompanhamento dos cuidados de pets, facilitando a vida dos tutores em relação a saúde e cuidados de seus animas, o sistema é dividido pelas funcionalidades a seguir.
+
+- Tenham acesso ao controle de vacinas, controle de medicação, gestão de consulta e histórico de sáude.
+
+Histórico de saúde, que permite com que os tutores:
+    - Registrem e mantenham atualizadas informações de seus animais como evolução de peso e resumo de saúde, a partir de um histórico que serve como uma linha do tempo completa da saúde.
+    - Esse histórico registra consultas, vacinas aplicadas, prescrição de medicações com todas as informações relacionadas a cada caso.
+    - O histórico também gerencia a partir do armazenamento de consultas realizadas, vacinas aplicadas, medicamentos ativos e vacinas vencidas.
+    - Acompanha os próximos eventos do pet.
+    - Tenham acesso rápido ao histórico completo de saúde dos pets.
+
+Controle de vacina, que permite com que os tutores:
+    - Gerenciem vacinas com nome, data de aplicação, próxima dose e status.
+    - Registro de nova vacina que contém: pet, nome da vacina, Data de aplicação e Data da próxima dose, nome do veterinário responsável (clínica, CRM) e observações.
+    - medicações.                                 
+    - Recebam notificações automáticas para evitar esquecimentos.
+
+Controle de medicações que permite com que os tutores:
+    - Gerenciem medicações com medicamento, dose, frequência, data de início do uso, data de término e status.
+    - Adicionar novos medicamentos que contém: pet, nome do medicamento, dose, frequência, data de início, data de término, nome do veterinário e observações (instruções de uso).
+    - Visualizar os medicamentos ativos com seus dados.
+
+Gestão de consultas que permite com que os tutores: 
+    - Visualizem o número total de consultas do ano.
+    - Visualizem a data da próxima consulta e a data da última consulta.
+    - Tenham acesso ao gasto estimado.
+    - Visualizem todas as consultas realizadas, separadas respectivamente por seus dados e status.
+    - Permite o uso de ações como visualizar, editar e excluir consultas.
+    - Registrar consulta realizado que contém: pet, tipo de consulta, data, horário, nome do veterinário, Diagnóstico/observações e o custo.
+    - Permitir com que o tutor salve a consulta especificada.
 
 Como objetivo secundário, o sistema visa:
 - Reduzir riscos à saúde dos animais causados por falhas no acompanhamento.
